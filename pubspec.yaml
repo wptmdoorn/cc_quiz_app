@@ -57,6 +57,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
+    - assets/images/labtest2.svg
+    - assets/images/result.svg
+    - assets/images/bg.jpg
     - assets/Masterfile KC QUIZ APP.xlsx
   #   - images/a_dot_ham.jpeg
 
