@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State {
-  // This widget is the root of your application.
+  // Custom initialisatie
   void initState() {
     super.initState();
     load();
@@ -22,11 +22,13 @@ class MyAppState extends State {
 
   Future<void> load() async {
     print('Initializing app');
-    print('Loading data');
-    QuestionController _controller = Get.put(await QuestionController.create());
 
-    print('Found questions, number: ');
-    print(_controller.questions.length);
+    // load() functie is voor nu overbodig
+    // we laden nu data in nadat je de opties selecteert
+    // zodra vragen online staan (als binair formaat), dan kunnen we hier
+    // mogelijk al checken voor versie number van online file; evt overwegen
+    // of we altijd lokaal kopie moeten opslaan zodat mensen het ook offline
+    // kunnen spelen
   }
 
   @override
@@ -34,7 +36,7 @@ class MyAppState extends State {
     return GetMaterialApp(
       title: 'Klinische Chemie',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark(), // willen we dark?
       home: WelcomeScreen(),
     );
   }

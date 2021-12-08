@@ -132,10 +132,10 @@ class QuestionController extends GetxController
           'question_type': row[2]?.value,
           'question': row[4]?.value,
           'options': [
-            row[6] == null ? "" : row[6]?.value,
-            row[7] == null ? "" : row[7]?.value,
-            row[8] == null ? "" : row[8]?.value,
-            row[9] == null ? "" : row[9]?.value
+            row[6] == null ? "" : row[6]?.value.toString(),
+            row[7] == null ? "" : row[7]?.value.toString(),
+            row[8] == null ? "" : row[8]?.value.toString(),
+            row[9] == null ? "" : row[9]?.value.toString(),
           ],
           'answer_index': 0,
         });

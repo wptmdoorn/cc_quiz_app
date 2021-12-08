@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/controllers/question_controller.dart'
+    show QuestionController;
 
 import '../../../constants.dart';
 
@@ -33,6 +33,8 @@ class OpenAnswer extends StatelessWidget {
             return kGrayColor;
           }
 
+          // TODO: BINNENKORT VERWIJDEREN!
+          // zodra open answer volledig werkt
           IconData getTheRightIcon() {
             return getTheRightColor() == kRedColor ? Icons.close : Icons.done;
           }
@@ -50,47 +52,20 @@ class OpenAnswer extends StatelessWidget {
                     borderSide:
                         const BorderSide(color: Colors.black, width: 0.0),
                   ),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.black, width: 0.0),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.black, width: 0.0),
+                  ),
                 ),
                 keyboardType: TextInputType.multiline,
                 maxLines: maxLines,
               ),
             ),
           );
-
-          /*return InkWell(
-            onTap: press,
-            child: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding),
-              padding: EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                border: Border.all(color: getTheRightColor()),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${index + 1}. $text",
-                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
-                  ),
-                  Container(
-                    height: 26,
-                    width: 26,
-                    decoration: BoxDecoration(
-                      color: getTheRightColor() == kGrayColor
-                          ? Colors.transparent
-                          : getTheRightColor(),
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(color: getTheRightColor()),
-                    ),
-                    child: getTheRightColor() == kGrayColor
-                        ? null
-                        : Icon(getTheRightIcon(), size: 16),
-                  )
-                ],
-              ),
-            ),
-          );*/
         });
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/Questions.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:quiz_app/screens/quiz/components/question_card_mc%20truefalse.dart';
 import 'package:quiz_app/screens/quiz/components/question_card_mc.dart';
 
@@ -15,6 +14,8 @@ class Body extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  // dynamische functie om type van vraagkaart te bepalen
+  // is nu support voor open vraag, multiple-choice en true/false
   dynamic getQuestionCard(Question q) {
     if (q.type == "OPEN") {
       return QuestionCardOpen(question: q);
@@ -25,6 +26,7 @@ class Body extends StatelessWidget {
     }
   }
 
+  // hoofd functie welke de quiz vrag bouwt
   @override
   Widget build(BuildContext context) {
     // So that we have acccess our controller
@@ -32,7 +34,16 @@ class Body extends StatelessWidget {
     print('Building body');
     return Stack(
       children: [
-        SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
+        // background image
+        new Container(
+            decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("assets/images/bg.jpg"),
+            fit: BoxFit.cover,
+          ),
+        )),
+
+        // content
         SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

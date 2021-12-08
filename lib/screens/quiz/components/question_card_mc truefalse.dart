@@ -6,6 +6,11 @@ import 'package:quiz_app/models/Questions.dart';
 import '../../../constants.dart';
 import 'option.dart';
 
+// variant van de multiple-choice vraag
+// in essentie het zelfde, alleen op L24 hebben we '2 opties' hardcoded
+// dit komt omdat we in de database file altijd 4 antwoorden hebben (wv laatste
+// 2 leeg zijn bij true-false), maar daardoor we dit nu dus hardcoden
+
 class QuestionCardTrueFalse extends StatelessWidget {
   const QuestionCardTrueFalse({
     Key? key,

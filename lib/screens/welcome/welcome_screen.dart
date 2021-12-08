@@ -10,7 +10,16 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
+          // background image
+          new Container(
+              decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage("assets/images/bg.jpg"),
+              fit: BoxFit.cover,
+            ),
+          )),
+
+          // de actuele inhoud
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -18,13 +27,29 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Spacer(flex: 2), //2/6
-                  Text(
-                    "Klinische Chemie Quiz",
+
+                  // titel van app
+                  Center(
+                      child: Text(
+                    "Klinische Chemie \n Quiz",
+                    textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline4?.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  //Text("Enter your informations below"),
-                  Spacer(), // 1/6
+                  )),
+
+                  // spacer
+                  Spacer(),
+
+                  // icoontje van lab materialen
+                  Center(
+                      child: SvgPicture.asset(
+                    "assets/images/result.svg",
+                  )),
+
+                  // spacer
+                  Spacer(),
+
+                  // knop om een nieuwe quiz te starten
                   InkWell(
                     onTap: () => Get.to(QuizStart()),
                     child: Container(
@@ -36,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(
-                        "Start Quiz",
+                        "Nieuwe Quiz",
                         style: Theme.of(context)
                             .textTheme
                             .button
@@ -44,9 +69,13 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // spacer
                   Spacer(),
+
+                  // knop om naar highscores te gaan
                   InkWell(
-                    onTap: () => Get.to(QuizStart()),
+                    onTap: () => Get.to(QuizStart()), // KLOPT NIET NU!
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
