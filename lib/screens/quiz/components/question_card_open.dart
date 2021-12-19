@@ -82,39 +82,38 @@ class QuestionCardOpen extends StatelessWidget {
                         content: Text(question.options![0]!),
                         actions: <Widget>[
                           IconButton(
-                              icon: Icon(
-                                Icons.assignment_turned_in_outlined,
-                                color: Colors.green,
-                                size: 24.0,
-                                semanticLabel:
-                                    'Text to announce in accessibility modes',
-                              ),
-                              onPressed: () =>
-                                  Navigator.pop(context, 'Cancel')),
+                            icon: Icon(
+                              Icons.assignment_turned_in_outlined,
+                              color: Colors.green,
+                              size: 24.0,
+                              semanticLabel:
+                                  'Text to announce in accessibility modes',
+                            ),
+                            onPressed: () => Navigator.pop(context, "0"),
+                          ),
                           IconButton(
-                              icon: Icon(
-                                Icons.cancel,
-                                color: Colors.red,
-                                size: 24.0,
-                                semanticLabel:
-                                    'Text to announce in accessibility modes',
-                              ),
-                              onPressed: () =>
-                                  Navigator.pop(context, 'Cancel')),
-                          //TextButton(
-                          //  onPressed: () => Navigator.pop(context, 'Cancel'),
-                          //  child: const Text('Cancel'),
-                          //),
-                          //TextButton(
-                          //  onPressed: () => Navigator.pop(context, 'OK'),
-                          //  child: const Text('OK'),
-                          //),
+                            icon: Icon(
+                              Icons.cancel,
+                              color: Colors.red,
+                              size: 24.0,
+                              semanticLabel:
+                                  'Text to announce in accessibility modes',
+                            ),
+                            onPressed: () => Navigator.pop(context, "1"),
+                          ),
                         ],
                       ),
-                    )),
+                    )).then((x) {
+              print('Pressed button!');
+              if (x == null) {
+                return;
+              }
+              print('Pressed ${x.toString()}');
+              _controller.checkAns(question, int.parse(x), 1);
+            }),
             child: Container(
               width: double.infinity,
-              alignment: Alignment.center,
+              alignment: Alignment.bottomCenter,
               padding: EdgeInsets.all(kDefaultPadding * 0.75), // 15
               decoration: BoxDecoration(
                 gradient: kPrimaryGradient,

@@ -59,9 +59,9 @@ class QuestionController extends GetxController
     // Once 60s is completed go to the next qn
     _animationController?.forward().whenComplete(nextQuestion);
     _pageController = PageController();
-    getQuestions().then((v) {
-      this._questions = v;
-    });
+    //getQuestions().then((v) {
+    //   this._questions = v;
+    //});
     super.onInit();
   }
 
@@ -73,11 +73,15 @@ class QuestionController extends GetxController
     _pageController.dispose();
   }
 
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(Question question, int selectedIndex, [int duration = 3]) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer!;
     _selectedAns = selectedIndex;
+
+    print('Checking answer');
+    print('Selected answer: ${_selectedAns}');
+    print('Correct answer: ${_correctAns}');
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
@@ -86,7 +90,7 @@ class QuestionController extends GetxController
     update();
 
     // Once user select an ans after 3s it will go to the next qn
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: duration), () {
       nextQuestion();
     });
   }
@@ -137,7 +141,9 @@ class QuestionController extends GetxController
             row[8] == null ? "" : row[8]?.value.toString(),
             row[9] == null ? "" : row[9]?.value.toString(),
           ],
-          'answer_index': 0,
+          'answer_index': row[10] == null
+              ? 0
+              : int.parse(row[10]?.value.substring(1, 2)) - 1,
         });
       } catch (e) {
         //TODO: REMOVE EMPTY QUESTIONS

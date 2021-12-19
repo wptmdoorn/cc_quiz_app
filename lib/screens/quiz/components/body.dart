@@ -32,6 +32,8 @@ class Body extends StatelessWidget {
     // So that we have acccess our controller
     QuestionController _questionController = Get.put(QuestionController());
     print('Building body');
+    print('Found questions in body: ');
+    print(_questionController.questions.length);
     return Stack(
       children: [
         // background image

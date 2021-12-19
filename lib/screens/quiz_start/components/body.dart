@@ -107,7 +107,7 @@ class BodyState extends State<Body> {
                           // SPACER
                           Spacer(),
 
-                          // SELECTEER WELKE VRAGEN
+                          // SELECTEER HOEVEEL VRAGEN
                           TextFormField(
                               controller: vragenController,
                               style: TextStyle(color: Colors.black),
@@ -152,6 +152,8 @@ class BodyState extends State<Body> {
                               _selectedCats = val.cast<Cat>();
                             },
                             items: _items,
+                            title: Text('Selecteer categorien',
+                                style: TextStyle(color: Colors.black)),
                             backgroundColor: Colors.white,
                             checkColor: Colors.black,
                             barrierColor: Colors.black,
@@ -166,47 +168,57 @@ class BodyState extends State<Body> {
                           // SPACER
                           Spacer(),
 
-                          // START NIEUWE QUIZ
-                          Center(
-                              child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                // Validate returns true if the form is valid, or false otherwise.
-                                if (_formKey.currentState!.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-                                  print('Quiz form ingevuld, resultaat:');
-                                  print(this.vragenController.text);
-                                  print(this._selectedCats);
+                          InkWell(
+                            onTap: () => () async {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                print('Quiz form ingevuld, resultaat:');
+                                print(this.vragenController.text);
+                                print(this._selectedCats);
 
-                                  // Controller verkrijgen
-                                  // Data inladen
+                                // Controller verkrijgen
+                                // Data inladen
 
-                                  print('Loading data');
-                                  QuestionController _controller = Get.put(
-                                      await QuestionController.create());
+                                print('Loading data');
+                                QuestionController _controller =
+                                    Get.put(await QuestionController.create());
 
-                                  print('Found questions, number: ');
-                                  print(_controller.questions.length);
+                                print('Found questions, number: ');
+                                print(_controller.questions.length);
 
-                                  _controller.updateQuestions(
-                                      int.parse(this.vragenController.text),
-                                      this._selectedCats);
+                                _controller.updateQuestions(
+                                    int.parse(this.vragenController.text),
+                                    this._selectedCats);
 
-                                  Get.to(QuizScreen());
-                                }
-                              },
-                              child: const Text('Start Quiz!',
-                                  style: TextStyle(color: Colors.black)),
+                                Get.to(QuizScreen());
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.bottomCenter,
+                              padding:
+                                  EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                              decoration: BoxDecoration(
+                                gradient: kPrimaryGradient,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                              ),
+                              child: Text(
+                                "Start Quiz",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button
+                                    ?.copyWith(color: Colors.black),
+                              ),
                             ),
-                          )),
-                        ],
-                      ),
-                    )))
-          ]),
-        )
-      ],
-    );
-  }
+                          ))
+                    )
+                );
+            )
+            
+
+
+      }
 }

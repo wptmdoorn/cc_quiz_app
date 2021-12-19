@@ -41,7 +41,7 @@ class OpenAnswer extends StatelessWidget {
 
           var maxLines = 5;
           return Padding(
-            padding: const EdgeInsets.all(50),
+            padding: const EdgeInsets.all(8),
             child: SizedBox(
               height: maxLines * 50.0,
               child: TextField(
