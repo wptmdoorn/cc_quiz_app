@@ -1,11 +1,16 @@
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:quiz_app/models/Questions.dart';
-import 'package:quiz_app/screens/quiz_start/components/body.dart';
-import 'package:quiz_app/screens/score/score_screen.dart';
+import 'package:flutter/widgets.dart'
+    show Animation, AnimationController, Curves, PageController, Tween;
+import 'package:get/get.dart'
+    show Get, GetxController, RxInt, SingleGetTickerProviderMixin;
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/state_manager.dart'
+    show Get, GetxController, RxInt, SingleGetTickerProviderMixin;
+import 'package:quiz_app/models/Questions.dart' show Question;
+import 'package:quiz_app/screens/quiz_start/components/options.dart' show Cat;
+import 'package:quiz_app/screens/score/score_screen.dart' show ScoreScreen;
 import 'package:flutter/services.dart' show ByteData, rootBundle;
-import 'package:excel/excel.dart';
+import 'package:excel/excel.dart' show Data, Excel;
 
 // We use get package for our state management
 
@@ -131,7 +136,7 @@ class QuestionController extends GetxController
     for (var row in table) {
       try {
         questions.add({
-          "id": row[0] == null ? 0 : row[0]?.value,
+          'id': row[0] == null ? 0 : row[0]?.value,
           'cat': row[1]?.value,
           'question_type': row[2]?.value,
           'question': row[4]?.value,
@@ -178,8 +183,9 @@ class QuestionController extends GetxController
     print(cat_names);
 
     print('Filtering questions..');
-    List<Question> filteredQuestions =
-        questions.where((i) => cat_names.contains(i.cat)).toList();
+    //List<Question> filteredQuestions =
+    //   questions.where((i) => cat_names.contains(i.cat)).toList();
+    List<Question> filteredQuestions = questions;
 
     print('List size after filtering: ');
     print(filteredQuestions.length);

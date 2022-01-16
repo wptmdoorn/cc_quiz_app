@@ -1,5 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:flutter/material.dart'
+    show
+        BorderSide,
+        BuildContext,
+        Color,
+        Colors,
+        EdgeInsets,
+        InputDecoration,
+        Key,
+        OutlineInputBorder,
+        Padding,
+        SizedBox,
+        StatelessWidget,
+        TextField,
+        TextInputType,
+        TextStyle,
+        VoidCallback,
+        Widget;
+import 'package:get/get_state_manager/get_state_manager.dart' show GetBuilder;
 import 'package:quiz_app/controllers/question_controller.dart'
     show QuestionController;
 
@@ -33,11 +50,9 @@ class OpenAnswer extends StatelessWidget {
             return kGrayColor;
           }
 
+          // ignore: todo
           // TODO: BINNENKORT VERWIJDEREN!
           // zodra open answer volledig werkt
-          IconData getTheRightIcon() {
-            return getTheRightColor() == kRedColor ? Icons.close : Icons.done;
-          }
 
           var maxLines = 5;
           return Padding(
@@ -48,17 +63,17 @@ class OpenAnswer extends StatelessWidget {
                 style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: "Enter a message",
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Colors.black, width: 0.0),
+                        BorderSide(color: getTheRightColor(), width: 0.0),
                   ),
-                  disabledBorder: const OutlineInputBorder(
+                  disabledBorder: OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Colors.black, width: 0.0),
+                        BorderSide(color: getTheRightColor(), width: 0.0),
                   ),
-                  focusedBorder: const OutlineInputBorder(
+                  focusedBorder: OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Colors.black, width: 0.0),
+                        BorderSide(color: getTheRightColor(), width: 0.0),
                   ),
                 ),
                 keyboardType: TextInputType.multiline,

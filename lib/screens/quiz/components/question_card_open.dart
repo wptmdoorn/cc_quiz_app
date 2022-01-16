@@ -109,7 +109,7 @@ class QuestionCardOpen extends StatelessWidget {
                 return;
               }
               print('Pressed ${x.toString()}');
-              _controller.checkAns(question, int.parse(x), 1);
+              _controller.checkAns(question, int.parse(x), 3);
             }),
             child: Container(
               width: double.infinity,
@@ -120,7 +120,7 @@ class QuestionCardOpen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               child: Text(
-                "Start Quiz",
+                "Submit",
                 style: Theme.of(context)
                     .textTheme
                     .button
